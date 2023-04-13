@@ -29,6 +29,7 @@ document.addEventListener('visibilitychange', () => {
     interval = setInterval(() => {
       notification = new Notification('Saiu da pagina', {
         body: `Você está fora da pagina a ${Math.round((new Date() - leave) / 1000)} segundos. Volte logo!`,
+        image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
         tag: 'leave',
       });
     }, 100);
