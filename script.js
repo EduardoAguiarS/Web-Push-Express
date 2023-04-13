@@ -15,8 +15,8 @@ navigator.serviceWorker.register('sw.js')
     btn.addEventListener('click', () => {
       Notification.requestPermission().then(perm => {
         if (perm === 'granted') {
-          registration.showNotification('Hello world!', {
-            body: 'This is a notification',
+          registration.showNotification('Notificações ativa', {
+            body: 'Você receberá notificações quando sair da pagina ou fechar a pagina.',
           });
         } else {
           console.log('Permission denied');
@@ -43,40 +43,34 @@ navigator.serviceWorker.register('sw.js')
         });
       }
     });
+
+    // Envia notificação quando a pagina é fechada
+    window.onbeforeunload = () => {
+      registration.showNotification('Fechou a pagina', {
+        body: 'Volte logo!',
+      });
+    };
+
+    // Envia notificação quando a pagina é carregada
+    window.onload = () => {
+      Notification.requestPermission().then(perm => {
+        if (perm === 'granted') {
+          registration.showNotification('Bem vindo de volta!', {
+            body: 'Que bom que voltou!',
+          });
+        } else {
+          console.log('Permission denied');
+        }
+      });
+    };
+
+    // Envia notificação personalizada
+    btnCustom.addEventListener('click', event => {
+      event.preventDefault();
+      registration.showNotification(title.value, {
+        body: message.value,
+        icon: icon.value,
+        image: image.value,
+      });
+    });
   });
-
-// // Envia notificação quando a pagina é fechada
-// window.onbeforeunload = () => {
-//   notification = new Notification('Fechou a pagina', {
-//     body: 'Volte logo!',
-//   });
-// };
-
-// // Envia notificação quando a pagina é carregada
-// window.onload = () => {
-//   Notification.requestPermission().then(perm => {
-//     if (perm === 'granted') {
-//       const notification = new Notification('Bem vindo de volta!', {
-//         body: 'Que bom que voltou!',
-//       });
-//     } else {
-//       console.log('Permission denied');
-//     }
-//   });
-// };
-
-// // Envia notificação personalizada
-// btnCustom.addEventListener('click', event => {
-//   event.preventDefault();
-//   Notification.requestPermission().then(perm => {
-//     if (perm === 'granted') {
-//       const notification = new Notification(title.value, {
-//         body: message.value,
-//         icon: icon.value,
-//         image: image.value,
-//       });
-//     } else {
-//       console.log('Permission denied');
-//     }
-//   });
-// });
