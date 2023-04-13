@@ -1,4 +1,13 @@
-navigator.serviceWorker.register('sw.js');
+navigator.serviceWorker.register('sw.js')
+  // Send push notification
+  .then(registration => {
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', () => {
+      registration.showNotification('Hello world!', {
+        body: 'This is a notification',
+      });
+    });
+  });
 
 // Ativar notificações
 const btn = document.getElementById('btn');
