@@ -44,26 +44,6 @@ navigator.serviceWorker.register('sw.js')
       }
     });
 
-    // Envia notificação quando a pagina é fechada
-    window.onbeforeunload = () => {
-      registration.showNotification('Fechou a pagina', {
-        body: 'Volte logo!',
-      });
-    };
-
-    // Envia notificação quando a pagina é carregada
-    window.onload = () => {
-      Notification.requestPermission().then(perm => {
-        if (perm === 'granted') {
-          registration.showNotification('Bem vindo de volta!', {
-            body: 'Que bom que voltou!',
-          });
-        } else {
-          console.log('Permission denied');
-        }
-      });
-    };
-
     // Envia notificação personalizada
     btnCustom.addEventListener('click', event => {
       event.preventDefault();
