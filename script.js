@@ -1,3 +1,5 @@
+navigator.serviceWorker.register('sw.js');
+
 // Ativar notificações
 const btn = document.getElementById('btn');
 
