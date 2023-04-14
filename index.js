@@ -32,11 +32,13 @@ app.post('/subscribe', (req, res) => {
   res.status(201).json({});
 
   // Create payload
-  const payload = JSON.stringify({ title: 'Teste do backend' });
+  const payload = JSON.stringify({ title: 'Backend Notifcation', message: 'Notified by backend push' });
 
   // Pass object into sendNotification
-  webpush.sendNotification(subscription, payload)
-    .catch(err => console.error(err));
+  setTimeout(() => {
+    webpush.sendNotification(subscription, payload)
+      .catch(err => console.error(err));
+  }, 5000);
 });
 
 // Set port
