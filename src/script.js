@@ -63,7 +63,6 @@ navigator.serviceWorker.register('sw.js', { scope: '/' })
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
     });
 
-    // Envia a subscription para o backend
     await fetch('/subscribe', {
       method: 'POST',
       body: JSON.stringify(subscription),
